@@ -1,0 +1,30 @@
+version: '3.0'
+
+volumes:
+  mysql-data:
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mysql
+    hostname: mysql
+    env_file:
+      - mysql.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init-db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+  tracking-visiting-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tracking-visiting-api
+    container_name: tracking-visiting-api
+    restart: always
+    env_file:
+      - app.env
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
