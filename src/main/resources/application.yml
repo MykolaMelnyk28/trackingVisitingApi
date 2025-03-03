@@ -6,3 +6,8 @@ server:
 spring:
   application:
     name: trackingVisitingApis
+  datasource:
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/tracking_visiting_db}
+    driver-class-name: com.mysql.cj.jdbc.Driver

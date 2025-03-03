@@ -33,4 +33,5 @@ build/
 
 ### Properties ###
 .env
+*.env
 *.properties
